@@ -6,16 +6,14 @@ import sys
 import numpy
 import math
 
-def solve(part = 1):
+def solve(part):
 	cur_pos = 0
 	steps = 0
 
 	with open("input") as inputfile:
 		instructions = [int(x) for x in inputfile.read().splitlines()]
 
-		while True:
-			if cur_pos < 0 or cur_pos >= len(instructions):
-				break
+		while cur_pos >= 0 and cur_pos < len(instructions):
 			steps += 1
 			instruction = instructions[cur_pos]
 			instructions[cur_pos] += 1 if (instructions[cur_pos] < 3 or part == 1) else -1		
