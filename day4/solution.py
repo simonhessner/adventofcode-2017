@@ -2,10 +2,6 @@
 
 # http://adventofcode.com/2017/day/4
 
-import sys
-import numpy as np
-import math
-
 with open("input") as inputfile:
 	count1 = 0
 	count2 = 0

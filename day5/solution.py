@@ -2,10 +2,6 @@
 
 # http://adventofcode.com/2017/day/5
 
-import sys
-import numpy
-import math
-
 def solve(part):
 	cur_pos = 0
 	steps = 0
