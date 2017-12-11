@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# http://adventofcode.com/2017/day/9
+# http://adventofcode.com/2017/day/8
 
 with open("input") as inputfile:
 		instructions = [x.split(" ") for x in inputfile.read().splitlines()]
