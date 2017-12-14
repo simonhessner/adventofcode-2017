@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# http://adventofcode.com/2017/day/12
+# http://adventofcode.com/2017/day/13
 
 with open("input") as inputfile:
 	lines = inputfile.read().splitlines()
