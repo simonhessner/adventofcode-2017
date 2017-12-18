@@ -46,8 +46,6 @@ with open("input") as inputfile:
 
 ########### part 2
 
-from queue import Queue
-
 registersA = defaultdict(int)
 registersA["p"] = 0
 
@@ -105,6 +103,8 @@ def execute(registers, who, pos):
 				waitingB = True
 				return pos
 	if cmd == "jgz":
+		# IMPORTANT: do not compare registers[params[0]] > 0 because
+		# params[0] can also be an integer as well 
 		if get(registers, params[0]) > 0:
 			pos += get(registers, params[1])
 		else:
@@ -113,8 +113,6 @@ def execute(registers, who, pos):
 		pos += 1
 
 	return pos
-
-
 
 with open("input") as inputfile:
 	commands = [{"cmd" : x[0], "params" : x[1:]} for x in (x.split(" ") for x in inputfile.read().splitlines())]
