@@ -20,21 +20,25 @@ def get_particles():
 
 		return particles
 
+def update_particle(particle):
+	particle["speed"]["x"] 	  += particle["acceleration"]["x"]
+	particle["speed"]["y"] 	  += particle["acceleration"]["y"]
+	particle["speed"]["z"] 	  += particle["acceleration"]["z"]
+	particle["position"]["x"] += particle["speed"]["x"]
+	particle["position"]["y"] += particle["speed"]["y"]
+	particle["position"]["z"] += particle["speed"]["z"]
+
 def part1(iterations=250):
 	particles = get_particles()		
 
 	particleindex = None
 
+	# Just do a few iterations and then return the index of the last particle that decreased its distance (I found no good condition to stop the loop)
 	for _ in range(iterations):
 		for i, particle in enumerate(particles):
 				manhattandist1 = sum(map(abs, particle["speed"].values()))
-
-				particle["speed"]["x"] 	  += particle["acceleration"]["x"]
-				particle["speed"]["y"] 	  += particle["acceleration"]["y"]
-				particle["speed"]["z"] 	  += particle["acceleration"]["z"]
-				particle["position"]["x"] += particle["speed"]["x"]
-				particle["position"]["y"] += particle["speed"]["y"]
-				particle["position"]["z"] += particle["speed"]["z"]
+				
+				update_particle(particle)			
 
 				manhattandist2 = sum(map(abs, particle["speed"].values()))
 
@@ -44,12 +48,12 @@ def part1(iterations=250):
 	return particleindex
 		
 		
-
 def part2(iterations=250):
 	particles = get_particles()
 
 	particleindex = None
 
+	# Just do a few iterations and then return the count of particles left (I found no good condition to stop the loop)
 	for _ in range(iterations):
 		for i, particle in enumerate(particles):
 			collisions = [k for k in range(len(particles)) if particle["position"] == particles[k]["position"] and k != i]				
@@ -58,12 +62,7 @@ def part2(iterations=250):
 				particles = [particles[k] for k in range(len(particles)) if k not in collisions]
 				break
 
-			particle["speed"]["x"] 	  += particle["acceleration"]["x"]
-			particle["speed"]["y"] 	  += particle["acceleration"]["y"]
-			particle["speed"]["z"] 	  += particle["acceleration"]["z"]
-			particle["position"]["x"] += particle["speed"]["x"]
-			particle["position"]["y"] += particle["speed"]["y"]
-			particle["position"]["z"] += particle["speed"]["z"]
+			update_particle(particle)
 
 	return len(particles)
 
